@@ -1,0 +1,27 @@
+blueprint:
+  name: Leak detection & notifier
+  description: Send a notification when any configured moisture sensor becomes moist
+  domain: automation
+  input:
+    actions:
+      name: Actions
+      description: Notifications or similar to be run. {{ trigger.event.data.new_state.attributes.friendly_name }} is replaced with the name of triggered device that is moist.
+      selector:
+        action: {}          
+
+trigger:
+  - event_data: {}
+    event_type: state_changed
+    platform: event
+
+condition:
+  - condition: template
+    value_template: '{{ (trigger.event.data.new_state.attributes) and (trigger.event.data.new_state.attributes.device_class == "moisture") }}'
+  - condition: template
+    value_template: '{{ trigger.event.data.new_state.state == "on" }}'
+
+action:
+  - choose: []
+    default: !input 'actions'
+
+mode: single
