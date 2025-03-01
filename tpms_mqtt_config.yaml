@@ -1,65 +1,76 @@
 mqtt:
   sensor:
-  - name: "Tyre 1 Pressure"
-    state_topic: "RTL315/d56e4521"
-    icon: mdi:tire
-    unit_of_measurement: "psi"
-    value_template: "{{ value_json.pressure_PSI }}"
-    unique_id: "tpms_Car1_Tyre1_psi"
-    device_class: pressure
-    
-  - name: "Tyre 2 Pressure"
-    state_topic: "RTL315/d56e4183"
-    icon: mdi:tire
-    unit_of_measurement: "psi"
-    value_template: "{{ value_json.pressure_PSI }}"
-    unique_id: "tpms_Car1_Tyre2_psi"
-    device_class: pressure
-    
-  - name: "Tyre 3 Pressure"
-    state_topic: "RTL315/d56e41d8"
-    icon: mdi:tire
-    unit_of_measurement: "psi"
-    value_template: "{{ value_json.pressure_PSI }}"
-    unique_id: "tpms_Car1_Tyre3_psi"
-    device_class: pressure
-    
-  - name: "Tyre 4 Pressure"
-    state_topic: "RTL315/d56e4484"
-    icon: mdi:tire
-    unit_of_measurement: "psi"
-    value_template: "{{ value_json.pressure_PSI }}"
-    unique_id: "tpms_Car1_Tyre4_psi"
-    device_class: pressure
-    
-  - name: "Tyre 1 Temperature"
-    state_topic: "RTL315/d56e4521"
-    icon: mdi:tire
-    unit_of_measurement: "°C"
-    value_template: "{{ value_json.temperature_C }}"
-    unique_id: "tpms_Car1_Tyre1_temp"
-    device_class: temperature
-    
-  - name: "Tyre 2 Temperature"
-    state_topic: "RTL315/d56e4183"
-    icon: mdi:tire
-    unit_of_measurement: "°C"
-    value_template: "{{ value_json.temperature_C }}"
-    unique_id: "tpms_Car1_Tyre2_temp"
-    device_class: temperature
-    
-  - name: "Tyre 3 Temperature"
-    state_topic: "RTL315/d56e41d8"
-    icon: mdi:tire
-    unit_of_measurement: "°C"
-    value_template: "{{ value_json.temperature_C }}"
-    unique_id: "tpms_Car1_Tyre3_temp"
-    device_class: temperature
-    
-  - name: "Tyre 4 Temperature"
-    state_topic: "RTL315/d56e4484"
-    icon: mdi:tire
-    unit_of_measurement: "°C"
-    value_template: "{{ value_json.temperature_C }}"
-    unique_id: "tpms_Car1_Tyre4_temp"
-    device_class: temperature
+    # Tyre 1 Pressure
+    - state_topic: "RTL315/d56e4521"
+      unique_id: "tpms_Car1_Tyre1_psi"
+      <<: &tyre-pressure-common
+        name: "Pressure"
+        unit_of_measurement: "psi"
+        value_template: "{{ value_json.pressure_PSI }}"
+        device_class: pressure
+      device: &tyre-dev-d56e4521
+        name: "Tyre 1"
+        manufacturer: Michelin
+        model: CC2
+        identifiers: "d56e4521"
+
+    # Tyre 2 Pressure
+    - state_topic: "RTL315/d56e4183"
+      unique_id: "tpms_Car1_Tyre2_psi"
+      <<: *tyre-pressure-common
+      device: &tyre-dev-d56e4183
+        name: "Tyre 1"
+        manufacturer: Michelin
+        model: CC2
+        identifiers: "d56e4183"
+        icon: mdi:tire
+
+    # Tyre 3 Pressure
+    - state_topic: "RTL315/d56e41d8"
+      unique_id: "tpms_Car1_Tyre3_psi"
+      <<: *tyre-pressure-common
+      device: &tyre-dev-d56e41d8
+        name: "Tyre 1"
+        manufacturer: Michelin
+        model: CC2
+        identifiers: "d56e41d8"
+        icon: mdi:tire
+
+    # Tyre 4 Pressure
+    - state_topic: "RTL315/d56e4484"
+      unique_id: "tpms_Car1_Tyre4_psi"
+      <<: *tyre-pressure-common
+      device: &tyre-dev-d56e4484
+        name: "Tyre 1"
+        manufacturer: Michelin
+        model: CC2
+        identifiers: "d56e4484"
+        icon: mdi:tire
+
+    # Tyre 1 Temperature
+    - state_topic: "RTL315/d56e4521"
+      unique_id: "tpms_Car1_Tyre1_temp"
+      <<: &tyre-temp-common
+        name: "Temperature"
+        unit_of_measurement: "°C"
+        value_template: "{{ value_json.temperature_C }}"
+        device_class: temperature
+      device: *tyre-dev-d56e4521
+
+    # Tyre 2 Temperature
+    - state_topic: "RTL315/d56e4183"
+      unique_id: "tpms_Car1_Tyre2_temp"
+      <<: *tyre-temp-common
+      device: *tyre-dev-d56e4183
+
+    # Tyre 3 Temperature
+    - state_topic: "RTL315/d56e41d8"
+      unique_id: "tpms_Car1_Tyre3_temp"
+      <<: *tyre-temp-common
+      device: *tyre-dev-d56e41d8
+
+    # Tyre 4 Temperature
+    - state_topic: "RTL315/d56e4484"
+      unique_id: "tpms_Car1_Tyre4_temp"
+      <<: *tyre-temp-common
+      device: *tyre-dev-d56e4484
