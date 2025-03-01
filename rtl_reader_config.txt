@@ -1,0 +1,5 @@
+# Format: frequency_in_Mhz duration_in_seconds "id1 id2 id3 ..." mqtt_topic
+315.02M 20 "d56e4521 d56e4183 d56e41d8 d56e4484" RTL315
+914.70M 20 "46706753" RTL915
+916.45M 20 "13327453" RTL916
+433.92M 300 "174 28470 28439 2509 2353 4027" RTL433
