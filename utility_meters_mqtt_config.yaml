@@ -1,0 +1,20 @@
+mqtt:
+  sensor:
+  - name: "Gas Consumption"
+    state_topic: "RTL915/46706753"
+    icon: mdi:fire-circle
+    unit_of_measurement: 'ft³'
+    value_template: "{{ value_json.consumption_data }}"
+    json_attributes_template: "{{ value_json | to_json }}"
+    unique_id: gas_consumption_sensor
+    device_class: gas
+    state_class: total_increasing
+    
+  - name: "Water Consumption"
+    state_topic: "RTL916/13327453"
+    icon: mdi:water-pump
+    unit_of_measurement: 'gal'
+    value_template: "{{ value_json.volume_gal }}"
+    unique_id: water_consumption_sensor
+    device_class: water
+    state_class: total_increasing
