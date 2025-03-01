@@ -1,0 +1,26 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+homeassistant:
+  packages: !include_dir_named conf
+
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+mqtt: !include mqtt.yaml
+
+sensor:
+  - platform: statistics
+    entity_id: sensor.water_consumption
+    state_characteristic: mean
+    sampling_size: 20
+    
+logger:
+  default: info
+  logs:
+    homeassistant.components.mqtt: debug
