@@ -55,7 +55,7 @@ mqtt:
     unique_id: 53119_govee_water_battery
     <<: *govee-battery-common
     device: &govee-dev-53119
-      name: "Govee Kitchen Sink"
+      name: "Govee Water Heater"
       manufacturer: Govee
       model: H5054
       identifiers: "53119"
@@ -64,7 +64,7 @@ mqtt:
     unique_id: 55192_govee_water_battery
     <<: *govee-battery-common
     device: &govee-dev-55192
-      name: "Govee Kitchen Sink"
+      name: "Govee Lower Bath Toilet"
       manufacturer: Govee
       model: H5054
       identifiers: "55192"
@@ -73,7 +73,7 @@ mqtt:
     unique_id: 49542_govee_water_battery
     <<: *govee-battery-common
     device: &govee-dev-49542
-      name: "Govee Kitchen Sink"
+      name: "Govee Lower Bath Sink"
       manufacturer: Govee
       model: H5054
       identifiers: "49542"
@@ -82,7 +82,7 @@ mqtt:
     unique_id: 18665_govee_water_battery
     <<: *govee-battery-common
     device: &govee-dev-18665
-      name: "Govee Kitchen Sink"
+      name: "Govee Under Stairs"
       manufacturer: Govee
       model: H5054
       identifiers: "18665"
@@ -91,7 +91,7 @@ mqtt:
     unique_id: 55701_govee_water_battery
     <<: *govee-battery-common
     device: &govee-dev-55701
-      name: "Govee Kitchen Sink"
+      name: "Govee Dishwasher"
       manufacturer: Govee
       model: H5054
       identifiers: "55701"
