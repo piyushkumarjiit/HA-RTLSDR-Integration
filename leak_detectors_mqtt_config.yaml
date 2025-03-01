@@ -1,108 +1,14 @@
 mqtt:
   sensor:
-  - name: "Office Bathroom Toilet Leak Detector Battery"
-    state_topic: "RTL433/28439"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 28439_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-    device: &govee-dev-28439
-      name: "Govee Office Bath Toilet"
-      manufacturer: Govee
-      model: H5054
-      identifiers: "28439"
-    
-  - name: "Office Bathroom Sink Leak Detector Battery"
-    state_topic: "RTL433/28470"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 28470_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-    
-  - name: "Master Bathroom Sink Leak Detector Battery"
-    state_topic: "RTL433/2509"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 2509_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-    
-  - name: "Master Bathroom Toilet Leak Detector Battery"
-    state_topic: "RTL433/2353"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 2353_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-    
-  - name: "Kitchen Sink Leak Detector Battery"
-    state_topic: "RTL433/4027"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 4027_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-    
-  - name: "Water Heater Leak Detector Battery"
-    state_topic: "RTL433/53119"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 53119_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-    
-  - name: "Lower Bathroom Toilet Leak Detector Battery"
-    state_topic: "RTL433/55192"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 55192_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-    
-  - name: "Lower Bathroom Sink Leak Detector Battery"
-    state_topic: "RTL433/49542"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 49542_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-    
-  - name: "Under Stairs Leak Detector Battery"
-    state_topic: "RTL433/18665"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 18665_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-    
-  - name: "Dishwasher Leak Detector Battery"
-    state_topic: "RTL433/55701"
-    device_class: battery
-    state_class: measurement
-    value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
-    unique_id: 55701_govee_water_battery
-    unit_of_measurement: "%"
-    qos: 1
-  binary_sensor:
   - state_topic: "RTL433/28439"
-    device_class: moisture
-    unique_id: 28439_govee_water
-    name: "Office Bath Toilet Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    unique_id: 28439_govee_water_battery
+    <<: &govee-battery-common
+      name: "Battery"
+      device_class: battery
+      state_class: measurement
+      unit_of_measurement: "%"
+      value_template: "{{ (value_json.battery_ok|float * 100.0)|round(0) }}"
+      qos: 1    
     device: &govee-dev-28439
       name: "Govee Office Bath Toilet"
       manufacturer: Govee
@@ -110,83 +16,143 @@ mqtt:
       identifiers: "28439"
     
   - state_topic: "RTL433/28470"
-    device_class: moisture
-    unique_id: 28470_govee_water
-    name: "Office Sink Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    unique_id: 28470_govee_water_battery
+    <<: *govee-battery-common
+    device: &govee-dev-28470
+      name: "Govee Office Bath Sink"
+      manufacturer: Govee
+      model: H5054
+      identifiers: "28470"
     
   - state_topic: "RTL433/2509"
-    device_class: moisture
-    unique_id: 2509_govee_water
-    name: "Master Bath Sink Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    unique_id: 2509_govee_water_battery
+    <<: *govee-battery-common
+    device: &govee-dev-2509
+      name: "Govee Master Bath Sink"
+      manufacturer: Govee
+      model: H5054
+      identifiers: "2509"
     
   - state_topic: "RTL433/2353"
-    device_class: moisture
-    unique_id: 2353_govee_water
-    name: "Master Bath Toilet Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    unique_id: 2353_govee_water_battery
+    <<: *govee-battery-common
+    device: &govee-dev-2353
+      name: "Govee Master Bath Toilet"
+      manufacturer: Govee
+      model: H5054
+      identifiers: "2353"
     
   - state_topic: "RTL433/4027"
-    device_class: moisture
-    unique_id: 4027_govee_water
-    name: "Kitchen Sink Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    unique_id: 4027_govee_water_battery
+    <<: *govee-battery-common
+    device: &govee-dev-4027
+      name: "Govee Kitchen Sink"
+      manufacturer: Govee
+      model: H5054
+      identifiers: "4027"
     
   - state_topic: "RTL433/53119"
-    device_class: moisture
-    unique_id: 53119_govee_water
-    name: "Water Heater Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    unique_id: 53119_govee_water_battery
+    <<: *govee-battery-common
+    device: &govee-dev-53119
+      name: "Govee Kitchen Sink"
+      manufacturer: Govee
+      model: H5054
+      identifiers: "53119"
     
   - state_topic: "RTL433/55192"
-    device_class: moisture
-    unique_id: 55192_govee_water
-    name: "Lower Bath Toilet Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    unique_id: 55192_govee_water_battery
+    <<: *govee-battery-common
+    device: &govee-dev-55192
+      name: "Govee Kitchen Sink"
+      manufacturer: Govee
+      model: H5054
+      identifiers: "55192"
     
   - state_topic: "RTL433/49542"
-    device_class: moisture
-    unique_id: 49542_govee_water
-    name: "Lower Bath Sink Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    unique_id: 49542_govee_water_battery
+    <<: *govee-battery-common
+    device: &govee-dev-49542
+      name: "Govee Kitchen Sink"
+      manufacturer: Govee
+      model: H5054
+      identifiers: "49542"
     
   - state_topic: "RTL433/18665"
-    device_class: moisture
-    unique_id: 18665_govee_water
-    name: "Under Stairs Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    unique_id: 18665_govee_water_battery
+    <<: *govee-battery-common
+    device: &govee-dev-18665
+      name: "Govee Kitchen Sink"
+      manufacturer: Govee
+      model: H5054
+      identifiers: "18665"
     
   - state_topic: "RTL433/55701"
-    device_class: moisture
+    unique_id: 55701_govee_water_battery
+    <<: *govee-battery-common
+    device: &govee-dev-55701
+      name: "Govee Kitchen Sink"
+      manufacturer: Govee
+      model: H5054
+      identifiers: "55701"
+
+
+  binary_sensor:
+  - state_topic: "RTL433/28439"
+    unique_id: 28439_govee_water    
+    # value_template: "{{ value_json.detect_wet }}"    
+    <<: &govee-leak-common
+      name: "Moisture State"
+      device_class: moisture
+      payload_on: "Water Leak"
+      payload_off: "Button Press"
+      value_template: "{{ value_json.event }}"
+      qos: 1
+    device: *govee-dev-28439
+
+  - state_topic: "RTL433/28470"
+    unique_id: 28470_govee_water
+    <<: *govee-leak-common
+    device: *govee-dev-28470
+
+    
+  - state_topic: "RTL433/2509"
+    unique_id: 2509_govee_water
+    <<: *govee-leak-common
+    device: *govee-dev-2509
+    
+  - state_topic: "RTL433/2353"
+    unique_id: 2353_govee_water
+    <<: *govee-leak-common
+    device: *govee-dev-2353
+    
+  - state_topic: "RTL433/4027"
+    unique_id: 4027_govee_water
+    <<: *govee-leak-common
+    device: *govee-dev-4027
+    
+  - state_topic: "RTL433/53119"
+    unique_id: 53119_govee_water
+    <<: *govee-leak-common
+    device: *govee-dev-53119
+    
+  - state_topic: "RTL433/55192"
+    unique_id: 55192_govee_water
+    <<: *govee-leak-common
+    device: *govee-dev-55192
+    
+  - state_topic: "RTL433/49542"
+    unique_id: 49542_govee_water
+    <<: *govee-leak-common
+    device: *govee-dev-49542
+    
+  - state_topic: "RTL433/18665"
+    unique_id: 18665_govee_water
+    <<: *govee-leak-common
+    device: *govee-dev-18665
+    
+  - state_topic: "RTL433/55701"
     unique_id: 55701_govee_water
-    name: "Dishwasher Leak"
-    payload_on: "Water Leak"
-    payload_off: "Button Press"
-    value_template: "{{ value_json.event }}"
-    qos: 1
+    <<: *govee-leak-common
+    device: *govee-dev-55701
     
