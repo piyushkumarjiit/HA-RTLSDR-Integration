@@ -1,0 +1,33 @@
+alias: Water Leak Notification
+description: ""
+use_blueprint:
+  path: piyushkumarjiit/Leak detection and notfication.yml.yaml
+  input:
+    actions:
+      - action: notify.persistent_notification
+        metadata: {}
+        data:
+          message: >-
+            Water leak detected from sensor: {{
+            trigger.event.data.new_state.attributes.friendly_name }}. Please
+            check the affected area.
+          title: Water Leak Alert
+      - action: notify.mobile_app_sm_s911u
+        metadata: {}
+        data:
+          message: >-
+            Water leak detected from sensor: {{
+            trigger.event.data.new_state.attributes.friendly_name }}. Please
+            check the affected area.
+          title: Water Leak Alert
+      - action: notify.mobile_app_pki11
+        metadata: {}
+        data:
+          message: >-
+            Water leak detected from sensor: {{
+            trigger.event.data.new_state.attributes.friendly_name }}. Please
+            check the affected area.
+          title: Water Leak Alert
+      - action: switch.turn_off
+        data:
+          entity_id: switch.valve_state

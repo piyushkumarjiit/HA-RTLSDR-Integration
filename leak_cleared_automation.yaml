@@ -1,0 +1,38 @@
+alias: Water Leak Managed
+description: ""
+use_blueprint:
+  path: piyushkumarjiit/leak_cleared_notfication.yaml
+  input:
+    actions:
+      - action: notify.persistent_notification
+        metadata: {}
+        data:
+          message: >-
+            Water leak detected earlier by sensor: {{
+            trigger.event.data.new_state.attributes.friendly_name }} has been
+            addressed. Main water supply has been restored.
+          title: Water Leak Update
+      - action: notify.mobile_app_sm_s911u
+        metadata: {}
+        data:
+          message: >-
+            Water leak detected earlier by sensor: {{
+            trigger.event.data.new_state.attributes.friendly_name }} has been
+            addressed. Main water supply has been restored.
+          title: Water Leak Update
+      - action: notify.mobile_app_pki11
+        metadata: {}
+        data:
+          message: >-
+            Water leak detected earlier by sensor: {{
+            trigger.event.data.new_state.attributes.friendly_name }} has been
+            addressed. Main water supply has been restored.
+          title: Water Leak Update
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
+      - action: switch.turn_on
+        data:
+          entity_id: switch.valve_state
