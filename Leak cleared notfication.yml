@@ -5,7 +5,7 @@ blueprint:
   input:
     actions:
       name: Actions
-      description: Notifications or similar to be run. {{ trigger.event.data.new_state.attributes.friendly_name }} is replaced with the name of triggered device that is moist.
+      description: Notifications or similar to be run. {{ trigger.event.data.new_state.attributes.friendly_name }} is replaced with the name of triggered device that was moist.
       selector:
         action: {}          
 
