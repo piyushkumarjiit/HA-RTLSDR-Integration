@@ -1,6 +1,6 @@
 blueprint:
-  name: Leak detection & notifier
-  description: Send a notification when any configured moisture sensor becomes moist
+  name: Leak management notifier
+  description: Send a notification when any configured moisture sensor publishes a "Button Press" even to indicate leak was addressed.
   domain: automation
   input:
     actions:
